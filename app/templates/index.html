@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    <h1>Bienvenido a Pokedesk</h1>
+    <p>Este es tu punto de partida para explorar el mundo Pokémon.</p>
+
+    {% if current_user.is_authenticated %}
+        <p>Hola, {{ current_user.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+    {% else %}
+        <p>Por favor <a href="{{ url_for('login') }}">Iniciar sesión</a> o <a href="{{ url_for('register') }}">Registrarse</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

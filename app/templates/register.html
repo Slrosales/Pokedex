@@ -1,12 +1,29 @@
-<form method="post" action="{{ url_for('register') }}">
-<label for="username">Nombre de usuario:</label>
-<input type="text" id="username" name="username" required>
+{% extends "base.html" %}
 
-<label for="email">Correo electrónico:</label>
-<input type="email" id="email" name="email" required>
-
-<label for="password">Contraseña:</label>
-<input type="password" id="password" name="password" required>
-
-<input type="submit" value="Registrarse">
-</form>
+{% block body %}
+<div class="container">
+    <h2>Registro</h2>
+    <form method="post" action="{{ url_for('register') }}">
+        <div class="form-group">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+    {% if get_flashed_messages() %}
+        <ul>
+            {% for message in get_flashed_messages() %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}
